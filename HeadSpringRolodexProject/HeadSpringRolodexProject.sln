@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadSpringRolodexProject.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadSpringRolodexProject.Infrastructure", "HeadSpringRolodexProject.Infrastructure\HeadSpringRolodexProject.Infrastructure.csproj", "{7EF557CC-CFAF-4285-B5C4-D0FD7073EA33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadSpringRolodexProject.IntegrationTests", "HeadSpringRolodexProject.IntegrationTests\HeadSpringRolodexProject.IntegrationTests.csproj", "{D0107FAF-605E-4FB8-9051-9F87A443DFF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7EF557CC-CFAF-4285-B5C4-D0FD7073EA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EF557CC-CFAF-4285-B5C4-D0FD7073EA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EF557CC-CFAF-4285-B5C4-D0FD7073EA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0107FAF-605E-4FB8-9051-9F87A443DFF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0107FAF-605E-4FB8-9051-9F87A443DFF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0107FAF-605E-4FB8-9051-9F87A443DFF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0107FAF-605E-4FB8-9051-9F87A443DFF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
