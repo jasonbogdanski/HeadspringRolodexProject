@@ -55,13 +55,17 @@ namespace HeadSpringRolodexProject.IntegrationTests.Infrastructure.NHibernate
                                     .Mappings(m =>
                                     m.FluentMappings
                                         .AddFromAssembly(assembly))
+                                        .ExposeConfiguration(cfg => Configuration = cfg)
                                     .BuildSessionFactory();
 
 
-            //using(var schemaSession = SessionFactory.OpenSession())
-            //{
-            //    new SchemaExport(Configuration).Execute(true, true, true, schemaSession.Connection, Console.Out);
-            //}
+            ISession session = this.SessionFactory.OpenSession();
+
+            var export = new SchemaExport(Configuration);
+            export.Execute(true, true, false, session.Connection, null);
+
+            session.Close();
+
         }
 
         private void CreateSessionFactory(string assemblyName, string connectionString)

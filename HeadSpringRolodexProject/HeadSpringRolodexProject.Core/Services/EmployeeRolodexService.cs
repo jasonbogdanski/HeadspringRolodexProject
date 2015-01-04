@@ -8,9 +8,14 @@ using System.Threading.Tasks;
 
 namespace HeadSpringRolodexProject.Core.Services
 {
-    public class EmployeeRolodexService
+    public class EmployeeRolodexService : IEmployeeRolodexService
     {
         private readonly IEmployeeModelRepository _employeeModelRepository;
+
+        public EmployeeRolodexService()
+        {
+
+        }
 
         public EmployeeRolodexService(IEmployeeModelRepository employeeModelRepository)
         {
@@ -20,6 +25,21 @@ namespace HeadSpringRolodexProject.Core.Services
         public List<EmployeeModel> GetEmployeesBySearchString(string searchString)
         {
             return _employeeModelRepository.GetEmployeesBySearchString(searchString);
+        }
+
+        public void Update(EmployeeModel employee)
+        {
+            _employeeModelRepository.Update(employee);
+        }
+
+        public void Add(EmployeeModel employee)
+        {
+            _employeeModelRepository.Add(employee);
+        }
+
+        public void Remove(EmployeeModel employee)
+        {
+            _employeeModelRepository.Remove(employee);
         }
     }
 }

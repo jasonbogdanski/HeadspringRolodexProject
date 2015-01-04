@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\EmployeeModel_CreateModel.cs" />
     <Compile Include="Core\EmployeeRolodexService_GetEmployeesBySearchString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
