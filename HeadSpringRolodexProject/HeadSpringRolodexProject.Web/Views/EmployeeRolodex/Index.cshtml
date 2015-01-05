@@ -1,9 +1,47 @@
-﻿
+﻿@using HeadSpringRolodexProject.Web.Models
+@model EmployeeRolodexViewModel
 @{
     ViewBag.Title = "Employee Rolodex";
 }
 
 <h2>Employee Rolodex</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search Name: @Html.TextBox("search_string", ViewBag.FilterValue as string)
+        <input type="submit" value="Find" class="btn-primary" />
+    </p>
+}
+
+@if (Model.Employees.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="col-md-3">First Name</th>
+                <th class="col-md-3">Last Name</th>
+                <th class="col-md-3">Email</th>
+                <th class="col-md-3">Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td>@employee.FistName</td>
+                    <td>@employee.LastName</td>
+                    <td>@employee.Email</td>
+                    <td>@employee.Location</td>
+                    @if (employee.PhoneNumbers.Count > 0)
+                    {
+
+                    }
+                 </tr>
+            }
+        </tbody>
+    </table>
+}
 
 
 

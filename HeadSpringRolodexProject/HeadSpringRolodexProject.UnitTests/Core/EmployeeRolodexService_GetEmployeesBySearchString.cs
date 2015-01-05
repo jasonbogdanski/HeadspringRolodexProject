@@ -55,5 +55,36 @@ namespace HeadSpringRolodexProject.UnitTests.Core
 
         }
 
+        [Test]
+        public void GetEmployeesBySearchString_NullOrEmptySearchString_ReturnsNoResults()
+        {
+            var mock = new Mock<IEmployeeModelRepository>();
+            var employeeList = new List<EmployeeModel>();
+            employeeList.Add(new EmployeeModel
+            {
+                FistName = "John",
+                LastName = "Smith"
+            });
+            employeeList.Add(new EmployeeModel
+            {
+                FistName = "Nancy",
+                LastName = "Smith"
+            });
+            mock.Setup(repo => repo.GetEmployeesBySearchString("Smith")).Returns(employeeList);
+
+            var employeeRolodexService = new EmployeeRolodexService(mock.Object);
+
+            Assert.AreEqual(0, employeeRolodexService.GetEmployeesBySearchString(null).Count);
+
+            mock.Verify(repo => repo.GetEmployeesBySearchString(null), Times.Never());
+
+            mock.ResetCalls();
+
+            Assert.AreEqual(0, employeeRolodexService.GetEmployeesBySearchString("").Count);
+
+            mock.Verify(repo => repo.GetEmployeesBySearchString(null), Times.Never());
+
+        }
+
     }
 }

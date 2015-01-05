@@ -24,7 +24,15 @@ namespace HeadSpringRolodexProject.Core.Services
 
         public List<EmployeeModel> GetEmployeesBySearchString(string searchString)
         {
-            return _employeeModelRepository.GetEmployeesBySearchString(searchString);
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                return _employeeModelRepository.GetEmployeesBySearchString(searchString);
+            }
+            else
+            {
+                return new List<EmployeeModel>();
+            }
+            
         }
 
         public void Update(EmployeeModel employee)

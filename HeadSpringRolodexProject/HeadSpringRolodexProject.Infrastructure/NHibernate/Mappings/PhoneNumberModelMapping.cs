@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using FluentNHibernate.Mapping;
 using HeadSpringRolodexProject.Core.Model;
 
-namespace HeadSpringRolodexProject.Infrastructure.NHibernate.Mappings
+namespace HeadSpringRolodexProject.DataAccessLayer.NHibernate.Mappings
 {
     public class PhoneNumberModelMapping:ClassMap<PhoneNumberModel>
     {
         public PhoneNumberModelMapping()
         {
-            Id(x => x.Id).GeneratedBy.Native();
+            Id(x => x.PhoneNumberId).GeneratedBy.Native();
             Map(x => x.Number).Length(100).Not.Nullable();
             Map(x => x.PhoneType).CustomType<int>();
             Table("PhoneNumber");

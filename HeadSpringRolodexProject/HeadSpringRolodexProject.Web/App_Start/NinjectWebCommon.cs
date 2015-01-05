@@ -67,6 +67,9 @@ namespace HeadSpringRolodexProject.Web.App_Start
         {
             kernel.Bind<IEmployeeRolodexService>().To<EmployeeRolodexService>();
             kernel.Bind<IEmployeeModelRepository>().To<EmployeeModelRepositoryStub>();
+            var autoMapper = new AutoMapperConfig();
+            autoMapper.Execute();
+            kernel.Inject(autoMapper);
         }        
     }
 }

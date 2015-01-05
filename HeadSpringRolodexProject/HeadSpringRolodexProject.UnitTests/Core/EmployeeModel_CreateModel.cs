@@ -29,7 +29,7 @@ namespace HeadSpringRolodexProject.UnitTests.Core
 
             var employee = EmployeeModel.Create(1, "John", "Smith", "Accountant", phoneNumberList1, "john.smith@aol.com", "Austin, TX");
 
-            Assert.AreEqual(1, employee.Id);
+            Assert.AreEqual(1, employee.EmployeeId);
             Assert.AreEqual("John", employee.FistName);
             Assert.AreEqual("Smith", employee.LastName);
             Assert.AreEqual("Accountant", employee.JobTitle);

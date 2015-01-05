@@ -9,7 +9,7 @@ using System;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 
-namespace HeadSpringRolodexProject.IntegrationTests.Infrastructure.NHibernate
+namespace HeadSpringRolodexProject.IntegrationTests.DataAccessLayer.NHibernate
 {
     public class NHibernateFixtureBase
     {

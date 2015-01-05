@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using FluentNHibernate.Mapping;
 using HeadSpringRolodexProject.Core.Model;
 
-namespace HeadSpringRolodexProject.Infrastructure.NHibernate.Mappings
+namespace HeadSpringRolodexProject.DataAccessLayer.NHibernate.Mappings
 {
     public class EmployeeModelMapping: ClassMap<EmployeeModel>
     {
         public EmployeeModelMapping()
         {
-            Id(x => x.Id).GeneratedBy.Native();
+            Id(x => x.EmployeeId).GeneratedBy.Native();
             Map(x => x.FistName).Length(50).Not.Nullable();
             Map(x => x.LastName).Length(50).Not.Nullable();
             Map(x => x.Location).Length(100).Not.Nullable();

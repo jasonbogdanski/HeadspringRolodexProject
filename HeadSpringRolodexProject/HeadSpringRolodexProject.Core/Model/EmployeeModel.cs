@@ -8,7 +8,7 @@ namespace HeadSpringRolodexProject.Core.Model
 {
     public class EmployeeModel
     {
-        public virtual int Id { get; protected set; }
+        public virtual int EmployeeId { get; protected set; }
         public virtual string FistName { get; set; }
         public virtual string LastName { get; set; }
         public virtual string JobTitle { get; set; }
@@ -16,11 +16,11 @@ namespace HeadSpringRolodexProject.Core.Model
         public virtual string Email { get; set; }
         public virtual string Location { get; set; }
 
-        public static EmployeeModel Create(int id, string firstName, string lastName, string jobTitle, List<PhoneNumberModel> phoneNumbers, string email, string location)
+        public static EmployeeModel Create(int employeeId, string firstName, string lastName, string jobTitle, List<PhoneNumberModel> phoneNumbers, string email, string location)
         {
             return new EmployeeModel
             {
-                Id = id,
+                EmployeeId = employeeId,
                 FistName = firstName,
                 LastName = lastName,
                 JobTitle = jobTitle,

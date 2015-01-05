@@ -7,8 +7,8 @@
     <ProjectGuid>{7EF557CC-CFAF-4285-B5C4-D0FD7073EA33}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HeadSpringRolodexProject.Infrastructure</RootNamespace>
-    <AssemblyName>HeadSpringRolodexProject.Infrastructure</AssemblyName>
+    <RootNamespace>HeadSpringRolodexProject.DataAccessLayer</RootNamespace>
+    <AssemblyName>HeadSpringRolodexProject.DataAccessLayer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

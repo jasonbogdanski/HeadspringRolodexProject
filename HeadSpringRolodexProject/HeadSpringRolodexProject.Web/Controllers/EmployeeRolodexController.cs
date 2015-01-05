@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HeadSpringRolodexProject.Core.Interfaces;
+using HeadSpringRolodexProject.Web.Models;
+using AutoMapper.Mappers;
+using AutoMapper.QueryableExtensions;
+
 
 namespace HeadSpringRolodexProject.Web.Controllers
 {
@@ -16,9 +20,14 @@ namespace HeadSpringRolodexProject.Web.Controllers
             _employeeRolodexService = employeeRolodexService;
         }
         // GET: EmployeeRolodex
-        public ActionResult Index()
+        public ActionResult Index(string search_string)
         {
-            return View();
+            var employeeViewModels = _employeeRolodexService.GetEmployeesBySearchString(search_string).AsQueryable().Project().To<EmployeeViewModel>().ToList();
+            var employeeRolodexViewModel = new EmployeeRolodexViewModel
+            {
+                Employees = employeeViewModels
+            };
+            return View(employeeRolodexViewModel);
         }
     }
 }

@@ -11,7 +11,7 @@ using System.IO;
 using NHibernate.Tool.hbm2ddl;
 using System.Reflection;
 
-namespace HeadSpringRolodexProject.Infrastructure.NHibernate
+namespace HeadSpringRolodexProject.DataAccessLayer.NHibernate
 {
     public class DatabaseConfiguration
     {

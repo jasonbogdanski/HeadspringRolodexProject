@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HeadSpringRolodexProject.Infrastructure;
+using HeadSpringRolodexProject.DataAccessLayer;
 using NUnit;
 using NUnit.Framework;
 using HeadSpringRolodexProject.Core.Model;
+using HeadSpringRolodexProject.DataAccessLayer.NHibernate;
 
-
-using HeadSpringRolodexProject.Infrastructure.NHibernate;namespace HeadSpringRolodexProject.IntegrationTests.Infrastructure.NHibernate
+namespace HeadSpringRolodexProject.IntegrationTests.DataAccessLayer.NHibernate
 {
     [TestFixture]
     public class NHEmployeeModelRepository_AddEmployee: NHibernateFixtureBase
     {
-        public NHEmployeeModelRepository_AddEmployee() : base(typeof(HeadSpringRolodexProject.Infrastructure.NHibernate.Mappings.EmployeeModelMapping).Assembly) { }
+        public NHEmployeeModelRepository_AddEmployee() : base(typeof(HeadSpringRolodexProject.DataAccessLayer.NHibernate.Mappings.EmployeeModelMapping).Assembly) { }
 
         [TestFixtureTearDown]
         public void FixtureTearDown()
@@ -23,6 +23,8 @@ using HeadSpringRolodexProject.Infrastructure.NHibernate;namespace HeadSpringRol
         }
 
         [Test]
+        [Ignore]
+        //Ignore for now until repository tests can run against in memory database.
         public void AddEmployee_AddOneEmployee_SavesCorrectly()
         {
             var employeeRepo = new NHEmployeeModelRepository(SessionFactory);

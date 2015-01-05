@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NHibernate;
 
-namespace HeadSpringRolodexProject.Infrastructure.NHibernate
+namespace HeadSpringRolodexProject.DataAccessLayer.NHibernate
 {
     public class NHEmployeeModelRepository : IEmployeeModelRepository
     {

@@ -74,7 +74,7 @@ namespace HeadSpringRolodexProject.Infrastructure
 
         public void Remove(Core.Model.EmployeeModel employee)
         {
-            var employeeToRemove = _employeeList.Find(X => X.Id == employee.Id);
+            var employeeToRemove = _employeeList.Find(X => X.EmployeeId == employee.EmployeeId);
             _employeeList.Remove(employeeToRemove);
         }
 
@@ -85,7 +85,7 @@ namespace HeadSpringRolodexProject.Infrastructure
 
         public void Update(Core.Model.EmployeeModel employee)
         {
-            var employeeToUpdate = _employeeList.Find(X => X.Id == employee.Id);
+            var employeeToUpdate = _employeeList.Find(X => X.EmployeeId == employee.EmployeeId);
 
         }
     }
