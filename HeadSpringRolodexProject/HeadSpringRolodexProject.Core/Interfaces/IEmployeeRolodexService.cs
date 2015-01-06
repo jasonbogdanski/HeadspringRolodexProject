@@ -1,11 +1,13 @@
-﻿using System;
+﻿using HeadSpringRolodexProject.Core.Models;
+using System;
 namespace HeadSpringRolodexProject.Core.Interfaces
 {
     public interface IEmployeeRolodexService
     {
-        void Add(HeadSpringRolodexProject.Core.Model.EmployeeModel employee);
-        System.Collections.Generic.List<HeadSpringRolodexProject.Core.Model.EmployeeModel> GetEmployeesBySearchString(string searchString);
-        void Remove(HeadSpringRolodexProject.Core.Model.EmployeeModel employee);
-        void Update(HeadSpringRolodexProject.Core.Model.EmployeeModel employee);
+        void Add(HeadSpringRolodexProject.Core.Models.EmployeeModel employee);
+        System.Collections.Generic.List<HeadSpringRolodexProject.Core.Models.EmployeeModel> GetEmployeesBySearchString(string searchString);
+        void Remove(HeadSpringRolodexProject.Core.Models.EmployeeModel employee);
+        void Update(HeadSpringRolodexProject.Core.Models.EmployeeModel employee);
+        EmployeeModel GetById(int employeeId);
     }
 }

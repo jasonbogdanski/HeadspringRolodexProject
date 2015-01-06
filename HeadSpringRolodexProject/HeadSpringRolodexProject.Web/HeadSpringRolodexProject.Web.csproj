@@ -251,8 +251,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\EmployeeRolodex\Index.cshtml" />
-    <Content Include="Views\EmployeeRolodex\EditEmployee.cshtml" />
-    <Content Include="Views\EmployeeRolodex\CreateEmployee.cshtml" />
+    <Content Include="Views\EmployeeRolodex\Create.cshtml" />
+    <Content Include="Views\EmployeeRolodex\_EmployeeForm.cshtml" />
+    <Content Include="Views\EmployeeRolodex\Edit.cshtml" />
+    <Content Include="Views\EmployeeRolodex\_List.cshtml" />
+    <Content Include="Views\EmployeeRolodex\_PhoneNumber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

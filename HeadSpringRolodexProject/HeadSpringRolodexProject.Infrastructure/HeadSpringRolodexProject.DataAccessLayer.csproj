@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="EmployeeModelRepositoryStub.cs" />
     <Compile Include="NHibernate\DatabaseConfiguration.cs" />
+    <Compile Include="NHibernate\Mappings\BranchLocationModelMapping.cs" />
     <Compile Include="NHibernate\Mappings\EmployeeModelMapping.cs" />
     <Compile Include="NHibernate\Mappings\PhoneNumberModelMapping.cs" />
     <Compile Include="NHibernate\NHEmployeeModelRepository.cs" />

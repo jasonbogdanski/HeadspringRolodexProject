@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using HeadSpringRolodexProject.DataAccessLayer;
 using NUnit;
 using NUnit.Framework;
-using HeadSpringRolodexProject.Core.Model;
+using HeadSpringRolodexProject.Core.Models;
 using HeadSpringRolodexProject.DataAccessLayer.NHibernate;
 
 namespace HeadSpringRolodexProject.IntegrationTests.DataAccessLayer.NHibernate
@@ -32,7 +32,6 @@ namespace HeadSpringRolodexProject.IntegrationTests.DataAccessLayer.NHibernate
             {
                 FistName = "John",
                 LastName = "Smith",
-                Location = "Austin, TX",
                 JobTitle = "Engineer",
                 Email = "John.Smith@gmail.com"
             };

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.WebPages.Html;
 
 namespace HeadSpringRolodexProject.Web.Models
 {
@@ -79,6 +80,9 @@ namespace HeadSpringRolodexProject.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Select User Role")]
+        public IEnumerable<SelectListItem> RolesList { get; set; }
     }
 
     public class ResetPasswordViewModel

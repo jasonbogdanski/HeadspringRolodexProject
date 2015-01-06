@@ -43,8 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IEmployeeModelRepository.cs" />
-    <Compile Include="Model\EmployeeModel.cs" />
-    <Compile Include="Model\PhoneNumberModel.cs" />
+    <Compile Include="Models\BranchLocationModel.cs" />
+    <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\PhoneNumberModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmployeeRolodexService.cs" />
     <Compile Include="Interfaces\IEmployeeRolodexService.cs" />

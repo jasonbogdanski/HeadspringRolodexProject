@@ -1,5 +1,5 @@
 ﻿using HeadSpringRolodexProject.Core.Interfaces;
-using HeadSpringRolodexProject.Core.Model;
+using HeadSpringRolodexProject.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +33,11 @@ namespace HeadSpringRolodexProject.Core.Services
                 return new List<EmployeeModel>();
             }
             
+        }
+
+        public EmployeeModel GetById(int employeeId)
+        {
+            return _employeeModelRepository.GetById(employeeId);   
         }
 
         public void Update(EmployeeModel employee)

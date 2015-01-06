@@ -1,4 +1,4 @@
-﻿using HeadSpringRolodexProject.Core.Model;
+﻿using HeadSpringRolodexProject.Core.Models;
 using HeadSpringRolodexProject.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -55,6 +55,12 @@ namespace HeadSpringRolodexProject.DataAccessLayer.NHibernate
         public void Save()
         {
             
+        }
+
+
+        public EmployeeModel GetById(int employeeId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

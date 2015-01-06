@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentNHibernate.Mapping;
-using HeadSpringRolodexProject.Core.Model;
+using HeadSpringRolodexProject.Core.Models;
 
 namespace HeadSpringRolodexProject.DataAccessLayer.NHibernate.Mappings
 {

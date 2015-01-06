@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NUnit;
 using NUnit.Framework;
 using HeadSpringRolodexProject.Core.Interfaces;
-using HeadSpringRolodexProject.Core.Model;
+using HeadSpringRolodexProject.Core.Models;
 using HeadSpringRolodexProject.Core.Services;
 using Moq;
 

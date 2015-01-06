@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HeadSpringRolodexProject.Core.Model
+namespace HeadSpringRolodexProject.Core.Models
 {
     public class EmployeeModel
     {
@@ -14,9 +14,9 @@ namespace HeadSpringRolodexProject.Core.Model
         public virtual string JobTitle { get; set; }
         public virtual List<PhoneNumberModel> PhoneNumbers { get; set; }
         public virtual string Email { get; set; }
-        public virtual string Location { get; set; }
+        public virtual BranchLocationModel BranchLocation { get; set; }
 
-        public static EmployeeModel Create(int employeeId, string firstName, string lastName, string jobTitle, List<PhoneNumberModel> phoneNumbers, string email, string location)
+        public static EmployeeModel Create(int employeeId, string firstName, string lastName, string jobTitle, List<PhoneNumberModel> phoneNumbers, string email, BranchLocationModel branchLocation)
         {
             return new EmployeeModel
             {
@@ -26,7 +26,7 @@ namespace HeadSpringRolodexProject.Core.Model
                 JobTitle = jobTitle,
                 PhoneNumbers = phoneNumbers,
                 Email = email,
-                Location = location
+                BranchLocation = branchLocation
             };
         }
 

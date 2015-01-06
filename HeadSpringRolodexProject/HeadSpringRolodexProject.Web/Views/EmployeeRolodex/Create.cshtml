@@ -1,0 +1,28 @@
+﻿@model HeadSpringRolodexProject.Web.Models.EmployeeViewModel
+
+@{
+    ViewBag.Title = "Add Employee";
+}
+
+<h2>Add Employee</h2>
+
+@using (Html.BeginForm("Create", "EmployeeRolodex")) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Add Employee</h4>
+        <hr />
+        @Html.Partial("_EmployeeForm", Model);
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
