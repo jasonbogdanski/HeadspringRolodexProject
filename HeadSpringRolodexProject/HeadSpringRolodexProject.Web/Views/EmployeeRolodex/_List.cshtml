@@ -4,9 +4,6 @@
     ViewBag.Title = "_List";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -30,6 +27,9 @@
         <th>
             @Html.DisplayNameFor(model => model.OtherPhoneNumber)
         </th>
+        <th>
+            Branch Location
+        </th>
         <th></th>
     </tr>
 
@@ -48,17 +48,19 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HomePhoneNumber.Number)
+            @Html.DisplayFor(modelItem => item.HomePhoneNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MobilePhoneNumber.Number)
+            @Html.DisplayFor(modelItem => item.MobilePhoneNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OtherPhoneNumber.Number)
+            @Html.DisplayFor(modelItem => item.OtherPhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchLocationCity), @Html.DisplayFor(modelItem => item.BranchLocationState)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new {  employeeId=item.EmployeeId  }) |
-            @Html.ActionLink("Details", "Details", new { employeeId = item.EmployeeId }) |
             @Html.ActionLink("Delete", "Delete", new { employeeId = item.EmployeeId })
         </td>
     </tr>

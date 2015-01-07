@@ -82,7 +82,7 @@
       <Project>{e18eff66-662b-4cf3-8b75-c6b7b247929e}</Project>
       <Name>HeadSpringRolodexProject.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HeadSpringRolodexProject.Infrastructure\HeadSpringRolodexProject.DataAccessLayer.csproj">
+    <ProjectReference Include="..\HeadSpringRolodexProject.DataAccessLayer\HeadSpringRolodexProject.DataAccessLayer.csproj">
       <Project>{7ef557cc-cfaf-4285-b5c4-d0fd7073ea33}</Project>
       <Name>HeadSpringRolodexProject.DataAccessLayer</Name>
     </ProjectReference>

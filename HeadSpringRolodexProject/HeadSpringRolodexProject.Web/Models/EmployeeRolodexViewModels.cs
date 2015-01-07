@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using HeadSpringRolodexProject.Web.Infrastructure.Mapping;
 using HeadSpringRolodexProject.Core.Models;
+using System.Web.Mvc;
 
 namespace HeadSpringRolodexProject.Web.Models
 {
@@ -13,7 +14,7 @@ namespace HeadSpringRolodexProject.Web.Models
         public List<EmployeeViewModel> Employees { get; set; }
     }
 
-    public class EmployeeViewModel:IHaveCustomMappings
+    public class EmployeeViewModel
     {
         public int EmployeeId { get; set; }
         [Required]
@@ -27,75 +28,139 @@ namespace HeadSpringRolodexProject.Web.Models
         public string JobTitle { get; set; }
         [Phone]
         [Display(Name= "Home Phone Number")]
-        public PhoneNumberViewModel HomePhoneNumber { get; set; }
+        public string HomePhoneNumber { get; set; }
         [Phone]
         [Display(Name = "Mobile Phone Number")]
-        public PhoneNumberViewModel MobilePhoneNumber { get; set; }
+        public string MobilePhoneNumber { get; set; }
         [Phone]
         [Display(Name = "Other Phone Number")]
-        public PhoneNumberViewModel OtherPhoneNumber { get; set; }
+        public string OtherPhoneNumber { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Display(Name = "Branch Location")]
+        public string BranchLocationCity { get; set; }
+        [Display(Name = "Branch City")]
+        public string BranchLocationState { get; set; }
         [Required]
-        [Display(Name = "Location")]
-        public BranchLocationViewModel BranchLocation { get; set; }
+        [Display(Name = "Branch Location")]
+        public int SelectedBranchLocationId { get; set; }
 
+        [Display(Name = "Select Branch Location")]
+        public IEnumerable<SelectListItem> BranchLocationList { get; set; }
 
-        public void CreateMappings(AutoMapper.IConfiguration configuration)
+        public static EmployeeViewModel Create(List<BranchLocationModel> branchLocations)
         {
-            configuration.CreateMap<EmployeeModel, EmployeeViewModel>()
-                .ForMember(m => m.HomePhoneNumber,
-                    opt => opt.MapFrom(u => u.PhoneNumbers.FirstOrDefault(x => x.PhoneType == PhoneNumberType.Home)))
-                .ForMember(m => m.MobilePhoneNumber,
-                    opt => opt.MapFrom(u => u.PhoneNumbers.FirstOrDefault(x => x.PhoneType == PhoneNumberType.Mobile)))
-                .ForMember(m => m.OtherPhoneNumber,
-                    opt => opt.MapFrom(u => u.PhoneNumbers.FirstOrDefault(x => x.PhoneType == PhoneNumberType.Other)));
+            return new EmployeeViewModel
+            {
+                BranchLocationList = MapFrom(branchLocations)
+            };
+        }
 
-            configuration.CreateMap<EmployeeViewModel, EmployeeModel>()
-                .ForMember(m => m.PhoneNumbers,
-                opt => opt.MapFrom(src => src.MapPhoneNumbers(src)));
+        public static List<SelectListItem> MapFrom(List<BranchLocationModel> branchLocations)
+        {
+            if (branchLocations != null)
+            {
+                return branchLocations.Select(x => new SelectListItem()
+                {
+                    Text = string.Format("{0}, {1}", x.City, x.State),
+                    Value = x.BranchLocationId.ToString()
+                }).ToList();
+            }
+            else
+            {
+                return new List<SelectListItem>();
+            }
+        }
+
+        public static EmployeeModel MapFrom(EmployeeViewModel employeeViewModel, List<BranchLocationModel> branchLocations)
+        {
+            return MapFrom(employeeViewModel, new EmployeeModel(), branchLocations);
+        }
+
+        public static EmployeeModel MapFrom(EmployeeViewModel employeeViewModel, EmployeeModel existingEmployee, List<BranchLocationModel> branchLocations)
+        {
+            existingEmployee.EmployeeId = employeeViewModel.EmployeeId;
+            existingEmployee.FistName = employeeViewModel.FistName;
+            existingEmployee.LastName = employeeViewModel.LastName;
+            existingEmployee.JobTitle = employeeViewModel.JobTitle;
+            existingEmployee.Email = employeeViewModel.Email;
+            existingEmployee.BranchLocation = branchLocations.FirstOrDefault(x => x.BranchLocationId == employeeViewModel.SelectedBranchLocationId);
+
+            MapPhoneNumbers(employeeViewModel, existingEmployee);
+
+            return existingEmployee;
+        }
+
+        public static List<EmployeeViewModel> MapFrom(List<EmployeeModel> employees)
+        {
+            return employees.Select(x => EmployeeViewModel.MapFrom(x)).ToList();
+        }
+
+        public static EmployeeViewModel MapFrom(EmployeeModel employee, List<BranchLocationModel> branchLocations = null)
+        {
+            var employeeViewModel = new EmployeeViewModel
+            {
+                EmployeeId = employee.EmployeeId,
+                HomePhoneNumber = MapFrom(employee.PhoneNumbers.FirstOrDefault(x=>x.PhoneType == PhoneNumberType.Home)),
+                MobilePhoneNumber = MapFrom(employee.PhoneNumbers.FirstOrDefault(x=>x.PhoneType == PhoneNumberType.Mobile)),
+                OtherPhoneNumber = MapFrom(employee.PhoneNumbers.FirstOrDefault(x=>x.PhoneType == PhoneNumberType.Other)),
+                FistName = employee.FistName,
+                LastName = employee.LastName,
+                Email = employee.Email,
+                JobTitle = employee.JobTitle,
+                BranchLocationCity = employee.BranchLocation.City,
+                BranchLocationState = employee.BranchLocation.State,
+                SelectedBranchLocationId = employee.BranchLocation.BranchLocationId,
+                BranchLocationList = MapFrom(branchLocations)
+            };
+
+            return employeeViewModel;
+        }
+
+        public static string MapFrom(PhoneNumberModel phoneNumber)
+        {
+            if (phoneNumber != null)
+            {
+                return phoneNumber.Number;
+            }
+            else
+            {
+                return null;
+            }
 
         }
 
-        public List<PhoneNumberModel> MapPhoneNumbers (EmployeeViewModel employeeViewModel) {
-
+        private static void MapPhoneNumbers(EmployeeViewModel employeeViewModel, EmployeeModel existingEmployee)
+        {
             var phoneNumbers = new List<PhoneNumberModel>();
+            MapPhone(employeeViewModel.HomePhoneNumber, PhoneNumberType.Home, existingEmployee);
+            MapPhone(employeeViewModel.MobilePhoneNumber, PhoneNumberType.Mobile, existingEmployee);
+            MapPhone(employeeViewModel.OtherPhoneNumber, PhoneNumberType.Other, existingEmployee);
+        }
 
-            if (employeeViewModel.HomePhoneNumber != null)
+        private static void MapPhone(string number, PhoneNumberType phoneType, EmployeeModel existingEmployee) {
+            if (number != null)
             {
-                phoneNumbers.Add(PhoneNumberModel.Create(employeeViewModel.HomePhoneNumber.PhoneNumberId, PhoneNumberType.Home, employeeViewModel.HomePhoneNumber.Number));
+                var phone = existingEmployee.PhoneNumbers.FirstOrDefault(x => x.PhoneType == phoneType);
+                if (phone != null)
+                {
+                    phone.Number = number;
+                }
+                else
+                {
+                    existingEmployee.PhoneNumbers.Add(PhoneNumberModel.Create(0, phoneType, number));
+                }
             }
-
-            if (employeeViewModel.MobilePhoneNumber != null)
-            {
-                phoneNumbers.Add(PhoneNumberModel.Create(employeeViewModel.MobilePhoneNumber.PhoneNumberId, PhoneNumberType.Mobile, employeeViewModel.MobilePhoneNumber.Number));
-            }
-
-            if (employeeViewModel.OtherPhoneNumber != null)
-            {
-                phoneNumbers.Add(PhoneNumberModel.Create(employeeViewModel.OtherPhoneNumber.PhoneNumberId, PhoneNumberType.Other, employeeViewModel.OtherPhoneNumber.Number));
-            }
-
-            return phoneNumbers;
         }
     }
 
-    public class BranchLocationViewModel : IMapFrom<BranchLocationModel>
+    public class BranchLocationViewModel
     {
         public int BranchLocationId { get; set; }
         public string City { get; set; }
         public string State { get; set; }
     }
-
-    public class PhoneNumberViewModel:IMapFrom<PhoneNumberModel>
-    {
-        public int PhoneNumberId { get; set; }
-        [Phone]
-        [Display(Name = "Phone Number")]
-        public string Number { get; set; }
-    }
-
 
 }

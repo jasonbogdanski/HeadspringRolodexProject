@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadSpringRolodexProject.Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadSpringRolodexProject.Core", "HeadSpringRolodexProject.Core\HeadSpringRolodexProject.Core.csproj", "{E18EFF66-662B-4CF3-8B75-C6B7B247929E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadSpringRolodexProject.DataAccessLayer", "HeadSpringRolodexProject.Infrastructure\HeadSpringRolodexProject.DataAccessLayer.csproj", "{7EF557CC-CFAF-4285-B5C4-D0FD7073EA33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadSpringRolodexProject.DataAccessLayer", "HeadSpringRolodexProject.DataAccessLayer\HeadSpringRolodexProject.DataAccessLayer.csproj", "{7EF557CC-CFAF-4285-B5C4-D0FD7073EA33}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadSpringRolodexProject.IntegrationTests", "HeadSpringRolodexProject.IntegrationTests\HeadSpringRolodexProject.IntegrationTests.csproj", "{D0107FAF-605E-4FB8-9051-9F87A443DFF8}"
 EndProject

@@ -66,7 +66,8 @@ namespace HeadSpringRolodexProject.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IEmployeeRolodexService>().To<EmployeeRolodexService>();
-            kernel.Bind<IEmployeeModelRepository>().To<EmployeeModelRepositoryStub>();
+            kernel.Bind<IEmployeeModelRepository>().To<EmployeeModelRepositoryStub>().InSingletonScope();
+            kernel.Bind<ILookUpModelService>().To<LookUpModelService>();
             var autoMapper = new AutoMapperConfig();
             autoMapper.Execute();
             kernel.Inject(autoMapper);

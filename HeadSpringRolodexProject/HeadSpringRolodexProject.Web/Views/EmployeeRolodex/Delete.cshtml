@@ -1,0 +1,26 @@
+﻿@model HeadSpringRolodexProject.Web.Models.EmployeeViewModel
+
+    <h3>Are you sure you want to delete this employee?</h3>
+    <div>
+
+        @using (Html.BeginForm("Delete", "EmployeeRolodex"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.Partial("_EmployeeDetails", Model)
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+                        <input type="submit" value="Delete" class="btn btn-primary" />                    
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions no-color">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>

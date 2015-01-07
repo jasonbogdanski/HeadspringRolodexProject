@@ -1,0 +1,80 @@
+﻿@model HeadSpringRolodexProject.Web.Models.EmployeeViewModel
+
+@Html.HiddenFor(model => model.EmployeeId)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FistName, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p class="form-control-static">
+            @Html.DisplayFor(model => model.FistName)
+        </p>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p class="form-control-static">
+            @Html.DisplayFor(model => model.LastName)
+        </p>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p class="form-control-static">
+            @Html.DisplayFor(model => model.JobTitle)
+        </p>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p class="form-control-static">
+            @Html.DisplayFor(model => model.Email)
+        </p>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.HomePhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p class="form-control-static">
+            @Html.DisplayFor(model => model.HomePhoneNumber)
+        </p>
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.MobilePhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p class="form-control-static">
+            @Html.DisplayFor(model => model.MobilePhoneNumber)
+        </p>
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.OtherPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p class="form-control-static">
+            @Html.DisplayFor(model => model.OtherPhoneNumber)
+        </p>
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.SelectedBranchLocationId, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p class="form-control-static">
+            @Html.DisplayFor(model => model.BranchLocationCity, new { htmlAttributes = new { @class = "form-control-static" } }),
+            @Html.DisplayFor(model => model.BranchLocationState, new { htmlAttributes = new { @class = "form-control-static" } })
+        </p>
+    </div>
+</div>
+
+
+
+
+
+
+

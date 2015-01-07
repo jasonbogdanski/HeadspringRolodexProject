@@ -49,6 +49,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmployeeRolodexService.cs" />
     <Compile Include="Interfaces\IEmployeeRolodexService.cs" />
+    <Compile Include="Interfaces\ILookUpModelService.cs" />
+    <Compile Include="Services\LookUpModelService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

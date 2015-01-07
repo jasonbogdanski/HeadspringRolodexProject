@@ -8,7 +8,11 @@ namespace HeadSpringRolodexProject.Core.Models
 {
     public class EmployeeModel
     {
-        public virtual int EmployeeId { get; protected set; }
+        public EmployeeModel()
+        {
+            PhoneNumbers = new List<PhoneNumberModel>();
+        }
+        public virtual int EmployeeId { get; set; }
         public virtual string FistName { get; set; }
         public virtual string LastName { get; set; }
         public virtual string JobTitle { get; set; }

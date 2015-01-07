@@ -4,20 +4,20 @@
     ViewBag.Title = "Add Employee";
 }
 
-<h2>Add Employee</h2>
+<h3>Add Employee</h3>
 
 @using (Html.BeginForm("Create", "EmployeeRolodex")) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Add Employee</h4>
         <hr />
-        @Html.Partial("_EmployeeForm", Model);
+        @Html.Partial("_EmployeeForm", Model)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </div>
     </div>

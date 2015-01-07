@@ -8,7 +8,7 @@ namespace HeadSpringRolodexProject.Core.Models
 {
     public class BranchLocationModel
     {
-        public virtual int BranchLocationId { get; protected set; }
+        public virtual int BranchLocationId { get; set; }
         public virtual string City { get; set; }
         public virtual string State { get; set; }
 
