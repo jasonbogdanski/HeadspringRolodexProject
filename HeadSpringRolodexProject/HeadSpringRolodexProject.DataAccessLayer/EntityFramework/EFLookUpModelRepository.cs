@@ -10,12 +10,16 @@ namespace HeadSpringRolodexProject.DataAccessLayer.EntityFramework
 {
     public class EFLookUpModelRepository: ILookUpModelRepository
     {
+        private HeadSpringRolodexProject.DataAccessLayer.EntityFramework.EFEmployeeModelRepository.EmployeeContext _context;
+
+        public EFLookUpModelRepository(HeadSpringRolodexProject.DataAccessLayer.EntityFramework.EFEmployeeModelRepository.EmployeeContext context)
+        {
+            _context = context;
+        }
+
         public List<BranchLocationModel> GetAllBranchLocations()
         {
-            using (var db = new HeadSpringRolodexProject.DataAccessLayer.EntityFramework.EFEmployeeModelRepository.EmployeeContext())
-            {
-                return db.BranchLocations.ToList();
-            }
+            return _context.BranchLocations.ToList();
         }
     }
 }

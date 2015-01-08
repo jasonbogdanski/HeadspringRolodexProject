@@ -1,5 +1,4 @@
 using HeadSpringRolodexProject.Core.Interfaces;
-using HeadSpringRolodexProject.Core.Services;
 using HeadSpringRolodexProject.Infrastructure;
 using HeadSpringRolodexProject.DataAccessLayer.EntityFramework;
 
@@ -66,7 +65,7 @@ namespace HeadSpringRolodexProject.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IEmployeeRolodexService>().To<EmployeeRolodexService>();
+            kernel.Bind<HeadSpringRolodexProject.DataAccessLayer.EntityFramework.EFEmployeeModelRepository.EmployeeContext>().To<HeadSpringRolodexProject.DataAccessLayer.EntityFramework.EFEmployeeModelRepository.EmployeeContext>().InSingletonScope();
             kernel.Bind<IEmployeeModelRepository>().To<EFEmployeeModelRepository>();
             kernel.Bind<ILookUpModelRepository>().To<EFLookUpModelRepository>();
             var autoMapper = new AutoMapperConfig();

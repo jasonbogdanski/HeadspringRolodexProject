@@ -12,7 +12,10 @@
         <div class="form-group">
             Search Name: @Html.TextBox("search_string", ViewBag.FilterValue as string, new { @class = "form-control" })
             <input type="submit" value="Find" class="btn btn-primary" /> 
-            <input type="button" value="Add New Employee" onclick="location.href='@Url.Action("Create", "EmployeeRolodex")'" class="btn btn-primary btn-createemployee" />   
+            @if (ViewBag.IsHR)
+            {
+                <input type="button" value="Add New Employee" onclick="location.href='@Url.Action("Create", "EmployeeRolodex")'" class="btn btn-primary btn-createemployee" />
+            }            
         </div>     
     </div>
 }

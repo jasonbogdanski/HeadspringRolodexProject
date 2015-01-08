@@ -82,7 +82,7 @@ namespace HeadSpringRolodexProject.Web.Models
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Select User Role")]
-        public IEnumerable<SelectListItem> RolesList { get; set; }
+        public IEnumerable<System.Web.Mvc.SelectListItem> RolesList { get; set; }
     }
 
     public class ResetPasswordViewModel

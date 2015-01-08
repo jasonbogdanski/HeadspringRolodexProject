@@ -9,5 +9,6 @@ namespace HeadSpringRolodexProject.Core.Interfaces
         void Remove(int employeeId);
         void Update(HeadSpringRolodexProject.Core.Models.EmployeeModel employee);
         EmployeeModel GetById(int employeeId);
+        void Save();
     }
 }

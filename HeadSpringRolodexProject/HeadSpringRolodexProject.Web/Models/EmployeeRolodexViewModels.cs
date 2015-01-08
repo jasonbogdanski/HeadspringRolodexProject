@@ -17,6 +17,7 @@ namespace HeadSpringRolodexProject.Web.Models
         }
 
         public List<EmployeeViewModel> Employees { get; set; }
+        public bool IsHR { get; set; }
         public string SearchMessage { get; set; }
     }
 
@@ -147,7 +148,7 @@ namespace HeadSpringRolodexProject.Web.Models
         }
 
         private static void MapPhone(string number, PhoneNumberType phoneType, EmployeeModel existingEmployee) {
-            if (number != null)
+            if (!string.IsNullOrEmpty(number))
             {
                 var phone = existingEmployee.PhoneNumbers.FirstOrDefault(x => x.PhoneType == phoneType);
                 if (phone != null)
@@ -158,6 +159,13 @@ namespace HeadSpringRolodexProject.Web.Models
                 {
                     existingEmployee.PhoneNumbers.Add(PhoneNumberModel.Create(0, phoneType, number));
                 }
+            }
+            else
+            {
+                var phone = existingEmployee.PhoneNumbers.FirstOrDefault(x=>x.PhoneType == phoneType);
+                if(phone != null) {
+                    existingEmployee.PhoneNumbers.Remove(phone);
+                }             
             }
         }
     }

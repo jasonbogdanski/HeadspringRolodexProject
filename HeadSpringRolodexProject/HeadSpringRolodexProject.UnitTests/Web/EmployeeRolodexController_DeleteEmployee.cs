@@ -79,6 +79,7 @@ namespace HeadSpringRolodexProject.UnitTests.Web
             var mockRolodexService = new Mock<IEmployeeModelRepository>();
             mockRolodexService.Setup(repo => repo.Remove(It.IsAny<int>()));
             mockRolodexService.Setup(repo => repo.GetById(It.IsAny<int>())).Returns(_employeeList.FirstOrDefault(x=>x.EmployeeId == employeeId));
+            mockRolodexService.Setup(repo => repo.Save());
 
             var mockLookUpModelService = new Mock<ILookUpModelRepository>();
             mockLookUpModelService.Setup(repo => repo.GetAllBranchLocations()).Returns(_branchLocationList);
@@ -88,6 +89,7 @@ namespace HeadSpringRolodexProject.UnitTests.Web
             RedirectToRouteResult result = controller.Delete(_employeeViewModel) as RedirectToRouteResult;
 
             mockRolodexService.Verify(x => x.Remove(employeeId), Times.AtLeastOnce());
+            mockRolodexService.Verify(x => x.Save(), Times.AtLeastOnce());
 
             Assert.AreEqual("Index", result.RouteValues.FirstOrDefault(x => x.Key == "action").Value);
             Assert.AreEqual("EmployeeRolodex", result.RouteValues.FirstOrDefault(x => x.Key == "controller").Value);

@@ -60,8 +60,13 @@
             @Html.DisplayFor(modelItem => item.BranchLocationCity), @Html.DisplayFor(modelItem => item.BranchLocationState)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  employeeId=item.EmployeeId  }) |
-            @Html.ActionLink("Delete", "Delete", new { employeeId = item.EmployeeId })
+            @if (ViewBag.IsHR)
+            {
+                @Html.ActionLink("Edit", "Edit", new { employeeId = item.EmployeeId }, new { @class = "col-md-2" }) 
+                
+                @Html.ActionLink("Delete", "Delete", new { employeeId = item.EmployeeId }, new { @class = "col-md-2" })
+            }
+            
         </td>
     </tr>
 }

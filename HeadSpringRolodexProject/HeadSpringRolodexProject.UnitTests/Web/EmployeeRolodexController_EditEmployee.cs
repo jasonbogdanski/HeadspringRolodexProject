@@ -77,7 +77,7 @@ namespace HeadSpringRolodexProject.UnitTests.Web
         public void EmployeeRolodexController_EditPost_ShouldUpdateEmployeeAndRedirectToIndex()
         {
             var mockRolodexService = new Mock<IEmployeeModelRepository>();
-            mockRolodexService.Setup(repo => repo.Update(It.IsAny<EmployeeModel>()));
+            mockRolodexService.Setup(repo => repo.Save());
             mockRolodexService.Setup(repo => repo.GetById(It.IsAny<int>())).Returns(_employeeList.FirstOrDefault(x => x.EmployeeId == 1));
 
             var mockLookUpModelService = new Mock<ILookUpModelRepository>();
@@ -87,7 +87,7 @@ namespace HeadSpringRolodexProject.UnitTests.Web
 
             RedirectToRouteResult result = controller.Edit(_employeeViewModel) as RedirectToRouteResult;
 
-            mockRolodexService.Verify(x => x.Update(It.Is<EmployeeModel>(p => p.FistName == "Theresa")), Times.AtLeastOnce());
+            mockRolodexService.Verify(x => x.Save(), Times.Once());
 
             Assert.AreEqual("Index", result.RouteValues.FirstOrDefault(x => x.Key == "action").Value);
             Assert.AreEqual("EmployeeRolodex", result.RouteValues.FirstOrDefault(x => x.Key == "controller").Value);

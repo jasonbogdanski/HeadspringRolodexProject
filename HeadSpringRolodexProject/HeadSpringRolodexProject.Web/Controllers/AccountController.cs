@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HeadSpringRolodexProject.Web.Models;
+using System.Collections.Generic;
 
 namespace HeadSpringRolodexProject.Web.Controllers
 {
@@ -153,8 +154,26 @@ namespace HeadSpringRolodexProject.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var registerViewModel = new RegisterViewModel
+            {
+                RolesList = ApplicationRoles
+            };
 
-            return View();
+            return View(registerViewModel);
+        }
+
+        //Create Roles List
+        private List<System.Web.Mvc.SelectListItem> ApplicationRoles
+        {
+            get
+            {
+                List<ApplicationRole> roles = RoleManager.Roles.ToList();
+                return roles.Select(x => new System.Web.Mvc.SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id
+                }).ToList();
+            }
         }
 
         //
@@ -167,9 +186,27 @@ namespace HeadSpringRolodexProject.Web.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    if (selectedRoles != null && selectedRoles.Count() > 0)
+                    {
+                        var createdUser = UserManager.FindByEmail(user.Email);
+                    
+                        var roles = RoleManager.Roles.ToList();
+                        foreach (string selectedRole in selectedRoles)
+                        {
+                            var role = roles.FirstOrDefault(x => x.Id == selectedRole);
+                            if (role != null)
+                            {
+                                UserManager.AddToRole(createdUser.Id, role.Name);
+                            }
+                        }
+
+                        UserManager.Update(createdUser);
+                    }                 
+                    
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -178,10 +215,12 @@ namespace HeadSpringRolodexProject.Web.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "EmployeeRolodex");
                 }
                 AddErrors(result);
             }
+            //need to readd roles list to user
+            model.RolesList = ApplicationRoles;
 
             // If we got this far, something failed, redisplay form
             return View(model);
@@ -407,7 +446,7 @@ namespace HeadSpringRolodexProject.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //
@@ -432,6 +471,12 @@ namespace HeadSpringRolodexProject.Web.Controllers
                 {
                     _signInManager.Dispose();
                     _signInManager = null;
+                }
+
+                if (_roleManager != null)
+                {
+                    _roleManager.Dispose();
+                    _roleManager = null;
                 }
             }
 
@@ -464,7 +509,7 @@ namespace HeadSpringRolodexProject.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "EmployeeRolodex");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
