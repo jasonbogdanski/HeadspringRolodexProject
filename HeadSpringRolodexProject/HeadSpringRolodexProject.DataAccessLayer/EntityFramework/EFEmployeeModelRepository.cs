@@ -32,7 +32,9 @@ namespace HeadSpringRolodexProject.DataAccessLayer.EntityFramework
                         emp.LastName.ToLower().Contains(searchString.ToLower()) ||
                         emp.Email.ToLower().Contains(searchString.ToLower()) ||
                         emp.JobTitle.ToLower().Contains(searchString.ToLower()) ||
-                        emp.PhoneNumbers.FirstOrDefault(x=>x.Number.ToLower().Contains(searchString.ToLower())) != null
+                        emp.PhoneNumbers.FirstOrDefault(x=>x.Number.ToLower().Contains(searchString.ToLower())) != null ||
+                        emp.BranchLocation.City.ToLower().Contains(searchString.ToLower()) ||
+                        emp.BranchLocation.State.ToLower().Contains(searchString.ToLower())
                        
                     select emp).ToList();
         }
