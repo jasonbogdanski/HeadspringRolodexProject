@@ -27,5 +27,5 @@ A typical directory entry has the following information:
  8. Login with the HR user and the application is redirected to the Employee Rolodex Page. The initial employee rolodex
     does not have any employees.  The HR user can create/update/delete employees.
 	*Going to add a seed script for employees at a later time*
-9.  Log out and login with the non-hr user. Perform a search for employees created by the HR user.
+ 9. Log out and login with the non-hr user. Perform a search for employees created by the HR user.
  
