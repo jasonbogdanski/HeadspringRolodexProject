@@ -16,10 +16,11 @@ A typical directory entry has the following information:
  Requirements
  * Visual Studio 2013
  
- 1. Pull down the source and open the HeadSpringRolodex.sln solution in Visual Studio 2013.
+ 1. Pull down the source and open the HeadSpringRolodexProject.sln solution in Visual Studio 2013.
  2. In the nuget package manager restore all the solution's packages. **Should be prompted in the nuget console**
  3. Rebuild the solution.
- 4. In the nuget package manager target the HeadSpringRolodexProject.DataAccessLayer project.
+ 4. Close and reopen the solution. *Update-Database will not show up in nuget unless this is done*
+ 5. In the nuget package manager target the HeadSpringRolodexProject.DataAccessLayer project.
     Run: Update-Database
- 5. Run the solution.  Starts on the Employee Rolodex page.  The initial employee rolodex does 
+ 6. Run the solution.  Starts on the Employee Rolodex page.  The initial employee rolodex does 
 	not have any employees.  *Going to add a seed script for employees at a later time*
