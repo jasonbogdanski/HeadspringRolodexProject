@@ -13,22 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadSpringRolodexProject.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadSpringRolodexProject.IntegrationTests", "HeadSpringRolodexProject.IntegrationTests\HeadSpringRolodexProject.IntegrationTests.csproj", "{D0107FAF-605E-4FB8-9051-9F87A443DFF8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonDLLs", "CommonDLLs", "{6E106C4E-BF73-4996-BE4F-E39779DE00C6}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTestDLLs", "UnitTestDLLs", "{BC139D40-7B38-481F-A6BE-B1ADE0689C84}"
-	ProjectSection(SolutionItems) = preProject
-		CommonDLLs\UnitTestDLLs\System.Web.Helpers.dll = CommonDLLs\UnitTestDLLs\System.Web.Helpers.dll
-		CommonDLLs\UnitTestDLLs\System.Web.Helpers.xml = CommonDLLs\UnitTestDLLs\System.Web.Helpers.xml
-		CommonDLLs\UnitTestDLLs\System.Web.Mvc.dll = CommonDLLs\UnitTestDLLs\System.Web.Mvc.dll
-		CommonDLLs\UnitTestDLLs\System.Web.Mvc.xml = CommonDLLs\UnitTestDLLs\System.Web.Mvc.xml
-		CommonDLLs\UnitTestDLLs\System.Web.WebPages.Deployment.dll = CommonDLLs\UnitTestDLLs\System.Web.WebPages.Deployment.dll
-		CommonDLLs\UnitTestDLLs\System.Web.WebPages.Deployment.xml = CommonDLLs\UnitTestDLLs\System.Web.WebPages.Deployment.xml
-		CommonDLLs\UnitTestDLLs\System.Web.WebPages.dll = CommonDLLs\UnitTestDLLs\System.Web.WebPages.dll
-		CommonDLLs\UnitTestDLLs\System.Web.WebPages.Razor.dll = CommonDLLs\UnitTestDLLs\System.Web.WebPages.Razor.dll
-		CommonDLLs\UnitTestDLLs\System.Web.WebPages.Razor.xml = CommonDLLs\UnitTestDLLs\System.Web.WebPages.Razor.xml
-		CommonDLLs\UnitTestDLLs\System.Web.WebPages.xml = CommonDLLs\UnitTestDLLs\System.Web.WebPages.xml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,8 +42,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{BC139D40-7B38-481F-A6BE-B1ADE0689C84} = {6E106C4E-BF73-4996-BE4F-E39779DE00C6}
 	EndGlobalSection
 EndGlobal
