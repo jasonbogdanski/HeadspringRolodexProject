@@ -6,22 +6,24 @@
 
 <h2>Employee Rolodex</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Search", "EmployeeRolodex"))
 {
     <div class="form-inline">
         <div class="form-group">
             Search Name: @Html.TextBox("search_string", ViewBag.FilterValue as string, new { @class = "form-control" })
             <input type="submit" value="Find" class="btn btn-primary" /> 
             <input type="button" value="Add New Employee" onclick="location.href='@Url.Action("Create", "EmployeeRolodex")'" class="btn btn-primary btn-createemployee" />   
-        </div>
-            
+        </div>     
     </div>
 }
 
 @if (Model.Employees.Count > 0)
 {
-    @Html.Partial("_List", Model.Employees);
+    @Html.Partial("_List", Model.Employees)
 }
 
+<h4>
+    @Html.DisplayFor(model=>model.SearchMessage)
+</h4>
 
 

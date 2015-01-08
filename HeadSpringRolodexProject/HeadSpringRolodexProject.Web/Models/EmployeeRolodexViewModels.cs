@@ -11,7 +11,13 @@ namespace HeadSpringRolodexProject.Web.Models
 {
     public class EmployeeRolodexViewModel
     {
+        public EmployeeRolodexViewModel()
+        {
+            Employees = new List<EmployeeViewModel>();
+        }
+
         public List<EmployeeViewModel> Employees { get; set; }
+        public string SearchMessage { get; set; }
     }
 
     public class EmployeeViewModel

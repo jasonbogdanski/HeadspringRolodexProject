@@ -6,7 +6,7 @@ namespace HeadSpringRolodexProject.Core.Interfaces
     {
         void Add(HeadSpringRolodexProject.Core.Models.EmployeeModel employee);
         System.Collections.Generic.List<HeadSpringRolodexProject.Core.Models.EmployeeModel> GetEmployeesBySearchString(string searchString);
-        void Remove(HeadSpringRolodexProject.Core.Models.EmployeeModel employee);
+        void Remove(int employeeId);
         void Update(HeadSpringRolodexProject.Core.Models.EmployeeModel employee);
         EmployeeModel GetById(int employeeId);
     }

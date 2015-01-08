@@ -16,23 +16,33 @@ namespace HeadSpringRolodexProject.Web.Controllers
 {
     public class EmployeeRolodexController : Controller
     {
-        private readonly IEmployeeRolodexService _employeeRolodexService;
-        private readonly ILookUpModelService _lookUpModelService;
+        private readonly IEmployeeModelRepository _employeeRolodexService;
+        private readonly ILookUpModelRepository _lookUpModelService;
 
-        public EmployeeRolodexController(IEmployeeRolodexService employeeRolodexService, ILookUpModelService lookUpModelService)
+        public EmployeeRolodexController(IEmployeeModelRepository employeeRolodexService, ILookUpModelRepository lookUpModelService)
         {
             _employeeRolodexService = employeeRolodexService;
             _lookUpModelService = lookUpModelService;
         }
         // GET: EmployeeRolodex
-        public ActionResult Index(string search_string)
+        public ActionResult Index()
+        {
+            return View(new EmployeeRolodexViewModel());
+        }
+
+        public ActionResult Search(string search_string)
         {
             var employeeViewModels = EmployeeViewModel.MapFrom(_employeeRolodexService.GetEmployeesBySearchString(search_string));
             var employeeRolodexViewModel = new EmployeeRolodexViewModel
             {
                 Employees = employeeViewModels
             };
-            return View(employeeRolodexViewModel);
+
+            if (employeeViewModels.Count() == 0)
+            {
+                employeeRolodexViewModel.SearchMessage = "No Employees Found";
+            }
+            return View("Index", employeeRolodexViewModel);
         }
 
         public ActionResult Create()
@@ -100,8 +110,7 @@ namespace HeadSpringRolodexProject.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(EmployeeViewModel model)
         {
-            var employee = _employeeRolodexService.GetById(model.EmployeeId);
-            _employeeRolodexService.Remove(employee);
+            _employeeRolodexService.Remove(model.EmployeeId);
 
             return RedirectToAction("Index", "EmployeeRolodex");
         }

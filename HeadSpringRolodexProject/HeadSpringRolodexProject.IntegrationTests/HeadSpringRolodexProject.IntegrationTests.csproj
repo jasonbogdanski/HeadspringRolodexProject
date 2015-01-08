@@ -68,7 +68,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\NHibernate\NHEmployeeModelRepository_AddEmployee.cs" />
     <Compile Include="Infrastructure\NHibernate\NHibernateFixtureBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

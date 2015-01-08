@@ -78,10 +78,10 @@ namespace HeadSpringRolodexProject.UnitTests.Web
         {
             var employeeModel = EmployeeViewModel.MapFrom(_employeeViewModel, _branchLocationList);
             
-            var mockRolodexService = new Mock<IEmployeeRolodexService>();
+            var mockRolodexService = new Mock<IEmployeeModelRepository>();
             mockRolodexService.Setup(repo => repo.Add(It.IsAny<EmployeeModel>()));
 
-            var mockLookUpModelService = new Mock<ILookUpModelService>();
+            var mockLookUpModelService = new Mock<ILookUpModelRepository>();
             mockLookUpModelService.Setup(repo => repo.GetAllBranchLocations()).Returns(_branchLocationList);
 
             EmployeeRolodexController controller = new EmployeeRolodexController(mockRolodexService.Object, mockLookUpModelService.Object);
@@ -97,10 +97,10 @@ namespace HeadSpringRolodexProject.UnitTests.Web
         [Test]
         public void EmployeeRolodexController_CreateGet_ShouldReturnCorretViewModel()
         {
-            var mockRolodexService = new Mock<IEmployeeRolodexService>();
+            var mockRolodexService = new Mock<IEmployeeModelRepository>();
             mockRolodexService.Setup(repo => repo.Add(It.IsAny<EmployeeModel>()));
 
-            var mockLookUpModelService = new Mock<ILookUpModelService>();
+            var mockLookUpModelService = new Mock<ILookUpModelRepository>();
             mockLookUpModelService.Setup(repo => repo.GetAllBranchLocations()).Returns(_branchLocationList);
 
             EmployeeRolodexController controller = new EmployeeRolodexController(mockRolodexService.Object, mockLookUpModelService.Object);
@@ -118,10 +118,10 @@ namespace HeadSpringRolodexProject.UnitTests.Web
         [Test]
         public void EmployeeRolodexController_CreatePostWithInvalidModelState_ShouldReturnsErrorToView()
         {
-            var mockRolodexService = new Mock<IEmployeeRolodexService>();
+            var mockRolodexService = new Mock<IEmployeeModelRepository>();
             mockRolodexService.Setup(repo => repo.Add(It.IsAny<EmployeeModel>()));
 
-            var mockLookUpModelService = new Mock<ILookUpModelService>();
+            var mockLookUpModelService = new Mock<ILookUpModelRepository>();
             mockLookUpModelService.Setup(repo => repo.GetAllBranchLocations()).Returns(_branchLocationList);
 
             EmployeeRolodexController controller = new EmployeeRolodexController(mockRolodexService.Object, mockLookUpModelService.Object);

@@ -9,7 +9,7 @@ using HeadSpringRolodexProject.Core.Interfaces;
 namespace HeadSpringRolodexProject.Core.Services
 {
     //A service that returns lookup models
-    public class LookUpModelService : ILookUpModelService
+    public class LookUpModelService : ILookUpModelRepository
     {
         public List<BranchLocationModel> GetAllBranchLocations()
         {

@@ -76,11 +76,11 @@ namespace HeadSpringRolodexProject.UnitTests.Web
         [Test]
         public void EmployeeRolodexController_EditPost_ShouldUpdateEmployeeAndRedirectToIndex()
         {
-            var mockRolodexService = new Mock<IEmployeeRolodexService>();
+            var mockRolodexService = new Mock<IEmployeeModelRepository>();
             mockRolodexService.Setup(repo => repo.Update(It.IsAny<EmployeeModel>()));
             mockRolodexService.Setup(repo => repo.GetById(It.IsAny<int>())).Returns(_employeeList.FirstOrDefault(x => x.EmployeeId == 1));
 
-            var mockLookUpModelService = new Mock<ILookUpModelService>();
+            var mockLookUpModelService = new Mock<ILookUpModelRepository>();
             mockLookUpModelService.Setup(repo => repo.GetAllBranchLocations()).Returns(_branchLocationList);
 
             EmployeeRolodexController controller = new EmployeeRolodexController(mockRolodexService.Object, mockLookUpModelService.Object);
@@ -97,10 +97,10 @@ namespace HeadSpringRolodexProject.UnitTests.Web
         public void EmployeeRolodexController_EditGet_ShouldReturnCorretViewModel()
         {
             var employeeId = 1;
-            var mockRolodexService = new Mock<IEmployeeRolodexService>();
+            var mockRolodexService = new Mock<IEmployeeModelRepository>();
             mockRolodexService.Setup(repo => repo.GetById(It.IsAny<int>())).Returns(_employeeList.FirstOrDefault(x => x.EmployeeId == employeeId));
 
-            var mockLookUpModelService = new Mock<ILookUpModelService>();
+            var mockLookUpModelService = new Mock<ILookUpModelRepository>();
             mockLookUpModelService.Setup(repo => repo.GetAllBranchLocations()).Returns(_branchLocationList);
 
             EmployeeRolodexController controller = new EmployeeRolodexController(mockRolodexService.Object, mockLookUpModelService.Object);
@@ -119,10 +119,10 @@ namespace HeadSpringRolodexProject.UnitTests.Web
         [Test]
         public void EmployeeRolodexController_EditPostWithInvalidState_ShouldReturnsErrorToView()
         {
-            var mockRolodexService = new Mock<IEmployeeRolodexService>();
+            var mockRolodexService = new Mock<IEmployeeModelRepository>();
             mockRolodexService.Setup(repo => repo.Add(It.IsAny<EmployeeModel>()));
 
-            var mockLookUpModelService = new Mock<ILookUpModelService>();
+            var mockLookUpModelService = new Mock<ILookUpModelRepository>();
             mockLookUpModelService.Setup(repo => repo.GetAllBranchLocations()).Returns(_branchLocationList);
 
             EmployeeRolodexController controller = new EmployeeRolodexController(mockRolodexService.Object, mockLookUpModelService.Object);

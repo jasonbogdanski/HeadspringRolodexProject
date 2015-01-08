@@ -1,6 +1,7 @@
 using HeadSpringRolodexProject.Core.Interfaces;
 using HeadSpringRolodexProject.Core.Services;
 using HeadSpringRolodexProject.Infrastructure;
+using HeadSpringRolodexProject.DataAccessLayer.EntityFramework;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(HeadSpringRolodexProject.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(HeadSpringRolodexProject.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -66,8 +67,8 @@ namespace HeadSpringRolodexProject.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IEmployeeRolodexService>().To<EmployeeRolodexService>();
-            kernel.Bind<IEmployeeModelRepository>().To<EmployeeModelRepositoryStub>().InSingletonScope();
-            kernel.Bind<ILookUpModelService>().To<LookUpModelService>();
+            kernel.Bind<IEmployeeModelRepository>().To<EFEmployeeModelRepository>();
+            kernel.Bind<ILookUpModelRepository>().To<EFLookUpModelRepository>();
             var autoMapper = new AutoMapperConfig();
             autoMapper.Execute();
             kernel.Inject(autoMapper);

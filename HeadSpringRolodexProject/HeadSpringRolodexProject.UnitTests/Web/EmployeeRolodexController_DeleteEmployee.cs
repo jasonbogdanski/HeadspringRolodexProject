@@ -76,18 +76,18 @@ namespace HeadSpringRolodexProject.UnitTests.Web
         public void EmployeeRolodexController_DeleteConfirm_ShouldDeleteEmployeeAndReturnToIndex()
         {
             var employeeId = 1;
-            var mockRolodexService = new Mock<IEmployeeRolodexService>();
-            mockRolodexService.Setup(repo => repo.Remove(It.IsAny<EmployeeModel>()));
+            var mockRolodexService = new Mock<IEmployeeModelRepository>();
+            mockRolodexService.Setup(repo => repo.Remove(It.IsAny<int>()));
             mockRolodexService.Setup(repo => repo.GetById(It.IsAny<int>())).Returns(_employeeList.FirstOrDefault(x=>x.EmployeeId == employeeId));
 
-            var mockLookUpModelService = new Mock<ILookUpModelService>();
+            var mockLookUpModelService = new Mock<ILookUpModelRepository>();
             mockLookUpModelService.Setup(repo => repo.GetAllBranchLocations()).Returns(_branchLocationList);
 
             EmployeeRolodexController controller = new EmployeeRolodexController(mockRolodexService.Object, mockLookUpModelService.Object);
 
             RedirectToRouteResult result = controller.Delete(_employeeViewModel) as RedirectToRouteResult;
 
-            mockRolodexService.Verify(x => x.Remove(It.Is<EmployeeModel>(p => p.EmployeeId == employeeId)), Times.AtLeastOnce());
+            mockRolodexService.Verify(x => x.Remove(employeeId), Times.AtLeastOnce());
 
             Assert.AreEqual("Index", result.RouteValues.FirstOrDefault(x => x.Key == "action").Value);
             Assert.AreEqual("EmployeeRolodex", result.RouteValues.FirstOrDefault(x => x.Key == "controller").Value);
@@ -97,10 +97,10 @@ namespace HeadSpringRolodexProject.UnitTests.Web
         public void EmployeeRolodexController_DeleteGet_ShouldReturnCorretViewModel()
         {
             var employeeId = 1;
-            var mockRolodexService = new Mock<IEmployeeRolodexService>();
+            var mockRolodexService = new Mock<IEmployeeModelRepository>();
             mockRolodexService.Setup(repo => repo.GetById(It.IsAny<int>())).Returns(_employeeList.FirstOrDefault(x => x.EmployeeId == employeeId));
 
-            var mockLookUpModelService = new Mock<ILookUpModelService>();
+            var mockLookUpModelService = new Mock<ILookUpModelRepository>();
             mockLookUpModelService.Setup(repo => repo.GetAllBranchLocations()).Returns(_branchLocationList);
 
             EmployeeRolodexController controller = new EmployeeRolodexController(mockRolodexService.Object, mockLookUpModelService.Object);

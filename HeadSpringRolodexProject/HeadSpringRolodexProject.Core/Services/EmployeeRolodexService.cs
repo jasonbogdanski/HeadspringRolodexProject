@@ -50,9 +50,9 @@ namespace HeadSpringRolodexProject.Core.Services
             _employeeModelRepository.Add(employee);
         }
 
-        public void Remove(EmployeeModel employee)
+        public void Remove(int employeeId)
         {
-            _employeeModelRepository.Remove(employee);
+            _employeeModelRepository.Remove(employeeId);
         }
     }
 }

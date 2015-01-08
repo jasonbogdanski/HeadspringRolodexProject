@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -40,6 +46,7 @@
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,11 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmployeeModelRepositoryStub.cs" />
-    <Compile Include="NHibernate\DatabaseConfiguration.cs" />
-    <Compile Include="NHibernate\Mappings\BranchLocationModelMapping.cs" />
-    <Compile Include="NHibernate\Mappings\EmployeeModelMapping.cs" />
-    <Compile Include="NHibernate\Mappings\PhoneNumberModelMapping.cs" />
-    <Compile Include="NHibernate\NHEmployeeModelRepository.cs" />
+    <Compile Include="EntityFramework\EFEmployeeModelRepository.cs" />
+    <Compile Include="EntityFramework\EFLookUpModelRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +68,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
