@@ -1,7 +1,9 @@
 ﻿using System;
 using HeadSpringRolodexProject.Core.Web.DependencyResolution;
+using HeadSpringRolodexProject.Core.Web.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -33,6 +35,11 @@ namespace HeadSpringRolodexProject.Core.Web
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+
+            services.Configure<RazorViewEngineOptions>(o =>
+            {
+                o.ViewLocationExpanders.Add(new FeatureViewLocationRemapper());
+            });
 
             services.AddMvc().AddControllersAsServices();
 
