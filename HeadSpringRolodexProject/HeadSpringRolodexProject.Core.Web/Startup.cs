@@ -1,10 +1,10 @@
 ﻿using System;
+using HeadSpringRolodexProject.Core.Web.DependencyResolution;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using StructureMap;
 
 namespace HeadSpringRolodexProject.Core.Web
 {
@@ -36,7 +36,7 @@ namespace HeadSpringRolodexProject.Core.Web
 
             services.AddMvc().AddControllersAsServices();
 
-            return ConfigureIoC(services);
+            return IoC.BuildServiceProvider(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,26 +67,6 @@ namespace HeadSpringRolodexProject.Core.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
-
-        public IServiceProvider ConfigureIoC(IServiceCollection services)
-        {
-            var container = new Container();
-
-            container.Configure(config =>
-            {
-                config.Scan(_ =>
-                {
-                    _.AssemblyContainingType(typeof(Startup));
-                    _.WithDefaultConventions();
-                });
-
-                //Populate the container using the service collection
-                config.Populate(services);
-            });
-
-            return container.GetInstance<IServiceProvider>();
-
         }
     }
 }
