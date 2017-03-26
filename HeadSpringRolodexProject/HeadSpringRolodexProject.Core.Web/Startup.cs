@@ -41,7 +41,8 @@ namespace HeadSpringRolodexProject.Core.Web
                 o.ViewLocationExpanders.Add(new FeatureViewLocationRemapper());
             });
 
-            services.AddMvc().AddControllersAsServices();
+            services.AddMvc(o => o.Conventions.Add(new FeatureControllerModelConvention()))
+                .AddControllersAsServices();
 
             return IoC.BuildServiceProvider(services);
         }
