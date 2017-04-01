@@ -1,6 +1,7 @@
 ﻿using System;
 using HeadSpringRolodexProject.Core.Web.DependencyResolution;
 using HeadSpringRolodexProject.Core.Web.Infrastructure;
+using HeadSpringRolodexProject.Core.Web.Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -41,10 +42,15 @@ namespace HeadSpringRolodexProject.Core.Web
                 o.ViewLocationExpanders.Add(new FeatureViewLocationRemapper());
             });
 
-            services.AddMvc(o => o.Conventions.Add(new FeatureControllerModelConvention()))
+            services.AddMvc(
+                setup =>
+                {
+                    setup.Conventions.Add(new FeatureControllerModelConvention());
+                    setup.Filters.Add(typeof(MvcTransactionFilter));
+                })
                 .AddControllersAsServices();
 
-            return IoC.BuildServiceProvider(services);
+            return IoC.BuildServiceProvider(services, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
