@@ -1,5 +1,4 @@
-﻿using System;
-using HeadSpringRolodexProject.Core.Web.DataAccessLayer;
+﻿using HeadSpringRolodexProject.Core.Web.DataAccessLayer;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace HeadSpringRolodexProject.Core.Web.Infrastructure.DataAccess

@@ -43,6 +43,18 @@
           }
         }
       },
+      "MediatR/3.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.1/MediatR.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/MediatR.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/2.1.0": {
         "type": "package",
         "dependencies": {
@@ -4260,6 +4272,17 @@
         "runtimes/win7-arm/native/libuv.dll",
         "runtimes/win7-x64/native/libuv.dll",
         "runtimes/win7-x86/native/libuv.dll"
+      ]
+    },
+    "MediatR/3.0.1": {
+      "sha512": "z29+r6WWtKLaTF6/+2vwRhjJvSUVzFHf9btQ24t3NBWUOcbVTkA7DLm9EXndM3yXXre9mAmhRN73BmQYS6R7qw==",
+      "type": "package",
+      "path": "MediatR/3.0.1",
+      "files": [
+        "MediatR.3.0.1.nupkg.sha512",
+        "MediatR.nuspec",
+        "lib/net45/MediatR.dll",
+        "lib/netstandard1.1/MediatR.dll"
       ]
     },
     "Microsoft.ApplicationInsights/2.1.0": {
@@ -10812,6 +10835,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "MediatR >= 3.0.1",
       "Microsoft.ApplicationInsights.AspNetCore >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics >= 1.0.0",
       "Microsoft.AspNetCore.Mvc >= 1.0.1",
