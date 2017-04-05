@@ -1,10 +1,9 @@
 ﻿using System;
-using HeadSpringRolodexProject.Core.Web.DependencyResolution;
-using HeadSpringRolodexProject.Core.Web.Infrastructure;
-using HeadSpringRolodexProject.Core.Web.Infrastructure.DataAccess;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -17,40 +16,19 @@ namespace HeadSpringRolodexProject.Core.Web
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-
-            if (env.IsDevelopment())
-            {
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
-                builder.AddApplicationInsightsSettings(developerMode: true);
-            }
             Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddApplicationInsightsTelemetry(Configuration);
-
-            services.Configure<RazorViewEngineOptions>(o =>
-            {
-                o.ViewLocationExpanders.Add(new FeatureViewLocationRemapper());
-            });
-
-            services.AddMvc(
-                setup =>
-                {
-                    setup.Conventions.Add(new FeatureControllerModelConvention());
-                    setup.Filters.Add(typeof(MvcTransactionFilter));
-                })
-                .AddControllersAsServices();
-
-            return IoC.BuildServiceProvider(services, Configuration);
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,8 +36,6 @@ namespace HeadSpringRolodexProject.Core.Web
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-            app.UseApplicationInsightsRequestTelemetry();
 
             if (env.IsDevelopment())
             {
@@ -70,8 +46,6 @@ namespace HeadSpringRolodexProject.Core.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
 
