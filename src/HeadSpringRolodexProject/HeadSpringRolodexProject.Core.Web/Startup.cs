@@ -37,6 +37,7 @@ namespace HeadSpringRolodexProject.Core.Web
                 opt.Filters.Add(typeof(DbContextTransactionFilter));
                 opt.Filters.Add(typeof(ValidatorActionFilter));
             })
+            .AddFeatureFolders()
             .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); });
 
             services.AddAutoMapper();
@@ -44,7 +45,6 @@ namespace HeadSpringRolodexProject.Core.Web
             Mapper.AssertConfigurationIsValid();
 
             services.AddMediatR();
-
             services.AddScoped(_ => new EmployeeRolodexContext(Configuration["Data:DefaultConnection:ConnectionString"]));
         }
 
