@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using HeadSpringRolodexProject.Core.Web.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +33,9 @@ namespace HeadSpringRolodexProject.Core.Web
             services.AddMvc(opt =>
             {
                 opt.Filters.Add(typeof(DbContextTransactionFilter));
-            });
+                opt.Filters.Add(typeof(ValidatorActionFilter));
+            })
+            .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); }); ;
 
             services.AddScoped(_ => new EmployeeRolodexContext(Configuration["Data:DefaultConnection:ConnectionString"]));
         }
