@@ -29,7 +29,10 @@ namespace HeadSpringRolodexProject.Core.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc(opt =>
+            {
+                opt.Filters.Add(typeof(DbContextTransactionFilter));
+            });
 
             services.AddScoped(_ => new EmployeeRolodexContext(Configuration["Data:DefaultConnection:ConnectionString"]));
         }
