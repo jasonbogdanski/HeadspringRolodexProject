@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using FluentValidation.AspNetCore;
 using HeadSpringRolodexProject.Core.Web.Infrastructure;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -35,7 +37,13 @@ namespace HeadSpringRolodexProject.Core.Web
                 opt.Filters.Add(typeof(DbContextTransactionFilter));
                 opt.Filters.Add(typeof(ValidatorActionFilter));
             })
-            .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); }); ;
+            .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); });
+
+            services.AddAutoMapper();
+
+            Mapper.AssertConfigurationIsValid();
+
+            services.AddMediatR();
 
             services.AddScoped(_ => new EmployeeRolodexContext(Configuration["Data:DefaultConnection:ConnectionString"]));
         }
