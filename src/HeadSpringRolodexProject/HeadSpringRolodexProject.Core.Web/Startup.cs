@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using FluentValidation.AspNetCore;
 using HeadSpringRolodexProject.Core.Web.Infrastructure;
+using HeadSpringRolodexProject.Core.Web.Infrastructure.Tags;
+using HtmlTags;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +45,7 @@ namespace HeadSpringRolodexProject.Core.Web
 
             services.AddMediatR();
             services.AddScoped(_ => new EmployeeRolodexContext(Configuration["Data:DefaultConnection:ConnectionString"]));
+            services.AddHtmlTags(new TagConventions());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
