@@ -2,13 +2,13 @@
 
 namespace HeadSpringRolodexProject.Core.Web.Domain
 {
-    public class Employee
+    public class Employee : IEntity
     {
         public Employee()
         {
             PhoneNumbers = new List<PhoneNumber>();
         }
-        public virtual int EmployeeId { get; set; }
+        public virtual int Id { get; set; }
         public virtual string FistName { get; set; }
         public virtual string LastName { get; set; }
         public virtual string JobTitle { get; set; }
@@ -20,7 +20,7 @@ namespace HeadSpringRolodexProject.Core.Web.Domain
         {
             return new Employee
             {
-                EmployeeId = employeeId,
+                Id = employeeId,
                 FistName = firstName,
                 LastName = lastName,
                 JobTitle = jobTitle,

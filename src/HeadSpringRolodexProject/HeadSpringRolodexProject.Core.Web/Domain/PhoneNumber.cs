@@ -1,9 +1,9 @@
 ﻿namespace HeadSpringRolodexProject.Core.Web.Domain
 {
     public enum PhoneNumberType { Home, Mobile, Other };
-    public class PhoneNumber
+    public class PhoneNumber : IEntity
     {
-        public virtual int PhoneNumberId { get; set; }
+        public virtual int Id { get; set; }
         public virtual PhoneNumberType PhoneType { get; set; }
         public virtual string Number { get; set; }
 
@@ -11,7 +11,7 @@
         {
             return new PhoneNumber
             {
-                PhoneNumberId = phoneNumberId,
+                Id = phoneNumberId,
                 PhoneType = phoneType,
                 Number = number
             };

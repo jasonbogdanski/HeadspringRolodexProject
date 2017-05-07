@@ -36,6 +36,7 @@ namespace HeadSpringRolodexProject.Core.Web
             {
                 opt.Filters.Add(typeof(DbContextTransactionFilter));
                 opt.Filters.Add(typeof(ValidatorActionFilter));
+                opt.ModelBinderProviders.Insert(0, new EntityModelBinderProvider());
             })
             .AddFeatureFolders()
             .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); });

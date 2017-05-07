@@ -1,8 +1,8 @@
 ﻿namespace HeadSpringRolodexProject.Core.Web.Domain
 {
-    public class BranchLocation
+    public class BranchLocation : IEntity
     {
-        public virtual int BranchLocationId { get; set; }
+        public virtual int Id { get; set; }
         public virtual string City { get; set; }
         public virtual string State { get; set; }
 
@@ -10,7 +10,7 @@
         {
             return new BranchLocation
             {
-                BranchLocationId = branchLocationId,
+                Id = branchLocationId,
                 City = city,
                 State = state
             };
